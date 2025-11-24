@@ -11,21 +11,21 @@ namespace Quartz.Job.Extensions.DependencyInjection;
 public static class IServiceCollectionQuartzConfiguratorExtensions
 {
     /// <summary>
-    /// Настраивает Listener для заданий
+    /// Configures Listener for Jobs
     /// </summary>
     public static void ConfigureJobListener<TListener>(this IServiceCollectionQuartzConfigurator quartz,
         params IMatcher<JobKey>[] matchers) where TListener : class, IJobListener
         => quartz.AddJobListener<TListener>(matchers);
 
     /// <summary>
-    /// Настраивает Listener для триггеров
+    /// Configures Listener for Triggers
     /// </summary>
     public static void ConfigureTriggerListener<TListener>(this IServiceCollectionQuartzConfigurator quartz,
         params IMatcher<TriggerKey>[] matchers) where TListener : class, ITriggerListener
         => quartz.AddTriggerListener<TListener>(matchers);
 
     /// <summary>
-    /// Настраивает Listener для триггеров
+    /// Configures Listener for Triggers
     /// </summary>
     public static void ConfigureTriggerListener<TListener>(this IServiceCollectionQuartzConfigurator quartz,
         Func<IServiceProvider, TListener> factory,
@@ -33,13 +33,13 @@ public static class IServiceCollectionQuartzConfiguratorExtensions
         => quartz.AddTriggerListener(factory, matchers);
 
     /// <summary>
-    /// Настраивает Listener для планировщика
+    /// Configures Listener for Scheduler
     /// </summary>
     public static void ConfigureSchedulerListener<TListener>(this IServiceCollectionQuartzConfigurator quartz) where TListener : class, ISchedulerListener
         => quartz.AddSchedulerListener<TListener>();
 
     /// <summary>
-    /// Планирует Job, используя настройки приложения
+    /// Configures Jobs using the application settings
     /// </summary>
     public static void ConfigureJobs(this IServiceCollectionQuartzConfigurator quartz, IConfiguration configuration)
     {
